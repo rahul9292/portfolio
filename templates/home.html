@@ -7,82 +7,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
   <style>
+    :root {
+      --primary-color: #00BFFF;
+      --bg-dark: #0e0e0e;
+      --bg-medium: #1c1c2b;
+      --bg-light: #121212;
+      --text-light: #f1f1f1;
+      --text-medium: #ccc;
+      --text-dark: #aaa;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #0e0e0e;
-      color: #f1f1f1;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
       overflow-x: hidden;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
+    /* Typography */
+    h1, h2, h3, h4 {
+      margin-top: 0;
+      line-height: 1.2;
+    }
+
+    /* Layout */
     .container {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 40px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    h1.typewriter {
-      overflow: hidden;
-      white-space: nowrap;
-      width: 0;
-      font-size: 2.6rem;
-      font-weight: 800;
-      margin-bottom: 30px;
-      animation: typing 3s steps(30, end) forwards, removeCursor 0s 3s forwards;
-      border-right: 2px solid #00BFFF;
+    .section {
+      padding: 60px 20px;
     }
 
-    @keyframes typing { from { width: 0; } to { width: 100%; } }
-    @keyframes removeCursor { to { border-right: none; } }
-
-    .glow {
-      color: #00BFFF;
-      text-shadow: 0 0 5px #00BFFF, 0 0 20px #00BFFF;
+    .section-title {
+      font-size: clamp(1.8rem, 5vw, 2.4rem);
+      color: var(--primary-color);
+      text-align: center;
+      margin-bottom: 40px;
+      text-shadow: 0 0 8px var(--primary-color);
     }
 
+    /* Cards */
     .card {
-      background: #1c1c2b;
-      padding: 30px;
+      background: var(--bg-medium);
+      padding: 25px;
+      width: 100%;
       max-width: 600px;
       border-radius: 15px;
       box-shadow: 0 12px 30px rgba(0, 191, 255, 0.1);
       transition: transform 0.4s ease;
-      margin: 40px auto; /* Increased vertical margin for better separation */
+      margin: 20px auto;
+    }
+
+    @media (min-width: 768px) {
+      .card {
+        padding: 30px;
+      }
     }
 
     .card:hover {
       transform: scale(1.03);
     }
 
+    /* Typewriter effect */
+    h1.typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 800;
+      margin-bottom: 30px;
+      animation: typing 3s steps(30, end) forwards, removeCursor 0s 3s forwards;
+      border-right: 2px solid var(--primary-color);
+    }
+
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes removeCursor { to { border-right: none; } }
+
+    .glow {
+      color: var(--primary-color);
+      text-shadow: 0 0 5px var(--primary-color), 0 0 20px var(--primary-color);
+    }
+
     .scroll-note {
       margin-top: 30px;
       font-size: 0.95rem;
-      color: #aaa;
+      color: var(--text-dark);
       animation: fadeIn 1s ease-in-out;
     }
 
-    .section-title {
-      font-size: 2.4rem;
-      color: #00BFFF;
-      text-align: center;
-      margin-bottom: 50px;
-      text-shadow: 0 0 8px #00BFFF;
-    }
-
-    .projects-section, .skills-experience-section, .about-section, .contact-section {
-      padding: 70px 20px;
-    }
-
+    /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      max-width: 1000px;
-      margin: auto;
+      grid-template-columns: 1fr;
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    @media (min-width: 600px) {
+      .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
     }
 
     .project-card {
-      background: #1c1c2b;
+      background: var(--bg-medium);
       border-radius: 12px;
       padding: 20px;
       transition: 0.3s ease;
@@ -95,52 +138,85 @@
     }
 
     .project-card h3 {
-      color: #00BFFF;
+      color: var(--primary-color);
       margin-bottom: 10px;
+      font-size: 1.3rem;
     }
 
     .project-card p, .project-card ul {
       font-size: 0.95rem;
-      color: #ccc;
+      color: var(--text-medium);
     }
 
     .project-image {
       width: 100%;
+      height: auto;
       border-radius: 10px;
       margin-bottom: 15px;
       object-fit: contain;
+      max-height: 200px;
     }
 
+    /* Skills Grid */
     .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 25px;
       max-width: 1000px;
-      margin: auto;
+      margin: 0 auto;
     }
 
-    ul { list-style: none; padding: 0; }
+    @media (min-width: 600px) {
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
+    /* Lists */
+    ul { 
+      list-style: none; 
+      padding: 0;
+      text-align: left;
+    }
+
+    ul li {
+      margin-bottom: 8px;
+      padding-left: 1.5em;
+      position: relative;
+    }
+
+    ul li:before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 0.5em;
+      height: 0.5em;
+      background-color: var(--primary-color);
+      border-radius: 50%;
+    }
+
+    /* About Section */
     .about-section {
-      background-color: #121212;
+      background-color: var(--bg-light);
       max-width: 900px;
-      margin: auto;
+      margin: 0 auto;
       text-align: center;
-      font-size: 1.05rem;
-      line-height: 1.6;
+      font-size: clamp(1rem, 2vw, 1.05rem);
     }
 
     .about-section p {
       margin-bottom: 20px;
       max-width: 700px;
-      margin-inline: auto;
+      margin-left: auto;
+      margin-right: auto;
     }
 
+    /* Contact Section */
     .contact-section {
       background-color: #111;
       max-width: 600px;
-      margin: 60px auto; /* More margin top and bottom */
+      margin: 60px auto;
       border-radius: 12px;
       text-align: center;
       box-shadow: 0 0 30px rgba(0, 191, 255, 0.15);
@@ -149,7 +225,7 @@
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 15px;
       margin-top: 20px;
     }
 
@@ -157,38 +233,54 @@
     .contact-form textarea {
       background: #1e1e1e;
       border: none;
-      padding: 15px;
+      padding: 12px 15px;
       color: #fff;
       border-radius: 8px;
       font-size: 1rem;
+      width: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .contact-form input,
+      .contact-form textarea {
+        padding: 15px;
+      }
     }
 
     .contact-form input:focus,
     .contact-form textarea:focus {
       outline: none;
-      box-shadow: 0 0 10px #00BFFF;
+      box-shadow: 0 0 10px var(--primary-color);
     }
 
     .contact-form button {
-      background-color: #00BFFF;
+      background-color: var(--primary-color);
       color: #000;
       font-weight: bold;
-      padding: 14px;
+      padding: 12px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
       transition: background-color 0.3s ease;
       font-size: 1.1rem;
+      margin-top: 10px;
+    }
+
+    @media (min-width: 768px) {
+      .contact-form button {
+        padding: 14px;
+      }
     }
 
     .contact-form button:hover {
       background-color: #009acd;
     }
 
+    /* Message Card */
     .message-card {
-      background-color: #00BFFF;
+      background-color: var(--primary-color);
       color: #000;
-      padding: 1rem 1.5rem;
+      padding: 1rem;
       border-radius: 12px;
       margin: 20px auto;
       max-width: 600px;
@@ -199,6 +291,13 @@
       animation: fadeInScale 0.4s ease forwards;
     }
 
+    @media (min-width: 768px) {
+      .message-card {
+        padding: 1rem 1.5rem;
+      }
+    }
+
+    /* Animations */
     @keyframes fadeInScale {
       0% {
         opacity: 0;
@@ -215,15 +314,28 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    /* Code Block */
     pre#gameCode {
       background: #2a2a3f;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
       color: #00ffcc;
       font-family: monospace;
       font-size: 0.9rem;
       overflow-x: auto;
       max-height: 400px;
+    }
+
+    /* Links */
+    a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
+
+    a:hover {
+      opacity: 0.8;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -238,7 +350,7 @@
   {% endif %}
 
   <div class="container">
-    <h1 class="typewriter">Hi, I'm <span class="glow">Rahul Bikram Thapa</span></h1>
+    <h1 class="typewriter">Hi,I'm <span class="glow">Rahul Bikram Thapa</span></h1>
     <div class="card">
       <h2>Creative Developer & Designer</h2>
       <p>I build interactive, beautiful, and high-performance websites and games with a creative twist.</p>
@@ -246,7 +358,7 @@
     <div class="scroll-note">↓ Scroll to see my projects</div>
   </div>
 
-  <section class="projects-section">
+  <section class="section projects-section">
     <h2 class="section-title">My Projects</h2>
     <div class="projects-grid">
 
@@ -257,42 +369,42 @@
       </div>
 
       <div class="project-card">
-        <h3><a href="https://inface.onrender.com/" target="_blank">💬 Group Chat Website</a></h3>
+        <h3><a href="https://inface.onrender.com/" target="_blank" rel="noopener noreferrer">💬 Group Chat Website</a></h3>
         <p>A real-time group messaging app built using Django Channels and WebSockets.</p>
       </div>
 
       <div class="project-card">
-        <h3><a href="https://kaajifurniture.onrender.com/" target="_blank">🛒 eCommerce Site</a></h3>
+        <h3><a href="https://kaajifurniture.onrender.com/" target="_blank" rel="noopener noreferrer">🛒 eCommerce Site</a></h3>
         <p>A Django-powered full-stack eCommerce site with cart, checkout, and payment integration.</p>
       </div>
 
     </div>
   </section>
 
-  <section class="skills-experience-section">
+  <section class="section skills-experience-section">
     <h2 class="section-title">Skills & Experience</h2>
     <div class="skills-grid">
       <div class="project-card">
         <h3>Skills</h3>
         <ul>
-          <li>✔️ HTML, CSS</li>
-          <li>✔️ Django & Python</li>
-          <li>✔️ Game Development with Pygame</li>
+          <li>HTML, CSS</li>
+          <li>Django & Python</li>
+          <li>Game Development with Pygame</li>
         </ul>
       </div>
       <div class="project-card">
         <h3>Experience</h3>
         <ul>
-          <li>🔹 Built web apps using Django</li>
-          <li>🔹 Developed 2D games with Python</li>
-          <li>🔹 Created real-time chat apps using WebSockets</li>
-          <li>🔹 Implemented payment systems in eCommerce sites</li>
+          <li>Built web apps using Django</li>
+          <li>Developed 2D games with Python</li>
+          <li>Created real-time chat apps using WebSockets</li>
+          <li>Implemented payment systems in eCommerce sites</li>
         </ul>
       </div>
     </div>
   </section>
 
-  <section class="about-section">
+  <section class="section about-section">
     <h2 class="section-title">About Me</h2>
     <div class="card">
       <p>I'm Rahul Bikram Thapa, a creative developer and designer. I blend technical skills and creative design to build modern websites and engaging games.</p>
@@ -300,7 +412,7 @@
     </div>
   </section>
 
-  <section class="contact-section">
+  <section class="section contact-section">
     <h2 class="section-title">Contact Me</h2>
     <div class="card">
       <form class="contact-form" action="" method="POST">

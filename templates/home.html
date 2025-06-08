@@ -1,0 +1,317 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rahul | Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0e0e0e;
+      color: #f1f1f1;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      text-align: center;
+      padding: 60px 20px 40px;
+    }
+
+    h1.typewriter {
+      overflow: hidden;
+      white-space: nowrap;
+      width: 0;
+      font-size: 2.6rem;
+      font-weight: 800;
+      margin-bottom: 30px;
+      animation: typing 3s steps(30, end) forwards, removeCursor 0s 3s forwards;
+      border-right: 2px solid #00BFFF;
+    }
+
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes removeCursor { to { border-right: none; } }
+
+    .glow {
+      color: #00BFFF;
+      text-shadow: 0 0 5px #00BFFF, 0 0 20px #00BFFF;
+    }
+
+    .card {
+      background: #1c1c2b;
+      padding: 30px;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 12px 30px rgba(0, 191, 255, 0.1);
+      transition: transform 0.4s ease;
+      margin: 40px auto; /* Increased vertical margin for better separation */
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .scroll-note {
+      margin-top: 30px;
+      font-size: 0.95rem;
+      color: #aaa;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      color: #00BFFF;
+      text-align: center;
+      margin-bottom: 50px;
+      text-shadow: 0 0 8px #00BFFF;
+    }
+
+    .projects-section, .skills-experience-section, .about-section, .contact-section {
+      padding: 70px 20px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .project-card {
+      background: #1c1c2b;
+      border-radius: 12px;
+      padding: 20px;
+      transition: 0.3s ease;
+      box-shadow: 0 10px 25px rgba(0, 191, 255, 0.08);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 191, 255, 0.2);
+    }
+
+    .project-card h3 {
+      color: #00BFFF;
+      margin-bottom: 10px;
+    }
+
+    .project-card p, .project-card ul {
+      font-size: 0.95rem;
+      color: #ccc;
+    }
+
+    .project-image {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      object-fit: contain;
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    ul { list-style: none; padding: 0; }
+
+    .about-section {
+      background-color: #121212;
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+      font-size: 1.05rem;
+      line-height: 1.6;
+    }
+
+    .about-section p {
+      margin-bottom: 20px;
+      max-width: 700px;
+      margin-inline: auto;
+    }
+
+    .contact-section {
+      background-color: #111;
+      max-width: 600px;
+      margin: 60px auto; /* More margin top and bottom */
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 0 30px rgba(0, 191, 255, 0.15);
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      background: #1e1e1e;
+      border: none;
+      padding: 15px;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      box-shadow: 0 0 10px #00BFFF;
+    }
+
+    .contact-form button {
+      background-color: #00BFFF;
+      color: #000;
+      font-weight: bold;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .contact-form button:hover {
+      background-color: #009acd;
+    }
+
+    .message-card {
+      background-color: #00BFFF;
+      color: #000;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      margin: 20px auto;
+      max-width: 600px;
+      font-family: 'Inter', sans-serif;
+      box-shadow: 0 6px 16px rgba(0, 191, 255, 0.4);
+      font-weight: 600;
+      text-align: center;
+      animation: fadeInScale 0.4s ease forwards;
+    }
+
+    @keyframes fadeInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    pre#gameCode {
+      background: #2a2a3f;
+      padding: 20px;
+      border-radius: 10px;
+      color: #00ffcc;
+      font-family: monospace;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      max-height: 400px;
+    }
+  </style>
+</head>
+<body>
+
+  {% if messages %}
+    {% for message in messages %}
+      <section class="message-card">
+        <p>{{ message }}</p>
+      </section>
+    {% endfor %}
+  {% endif %}
+
+  <div class="container">
+    <h1 class="typewriter">Hi, I'm <span class="glow">Rahul Bikram Thapa</span></h1>
+    <div class="card">
+      <h2>Creative Developer & Designer</h2>
+      <p>I build interactive, beautiful, and high-performance websites and games with a creative twist.</p>
+    </div>
+    <div class="scroll-note">↓ Scroll to see my projects</div>
+  </div>
+
+  <section class="projects-section">
+    <h2 class="section-title">My Projects</h2>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <h3>🎮 My Python Game</h3>
+        <p>A 2D game built using Python and Pygame.</p>
+        <img src="{% static 'Screenshot (125).png' %}" alt="Game Screenshot" class="project-image" />
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://inface.onrender.com/" target="_blank">💬 Group Chat Website</a></h3>
+        <p>A real-time group messaging app built using Django Channels and WebSockets.</p>
+      </div>
+
+      <div class="project-card">
+        <h3><a href="https://kaajifurniture.onrender.com/" target="_blank">🛒 eCommerce Site</a></h3>
+        <p>A Django-powered full-stack eCommerce site with cart, checkout, and payment integration.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="skills-experience-section">
+    <h2 class="section-title">Skills & Experience</h2>
+    <div class="skills-grid">
+      <div class="project-card">
+        <h3>Skills</h3>
+        <ul>
+          <li>✔️ HTML, CSS</li>
+          <li>✔️ Django & Python</li>
+          <li>✔️ Game Development with Pygame</li>
+        </ul>
+      </div>
+      <div class="project-card">
+        <h3>Experience</h3>
+        <ul>
+          <li>🔹 Built web apps using Django</li>
+          <li>🔹 Developed 2D games with Python</li>
+          <li>🔹 Created real-time chat apps using WebSockets</li>
+          <li>🔹 Implemented payment systems in eCommerce sites</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section">
+    <h2 class="section-title">About Me</h2>
+    <div class="card">
+      <p>I'm Rahul Bikram Thapa, a creative developer and designer. I blend technical skills and creative design to build modern websites and engaging games.</p>
+      <p>I specialize in Django, Python, Pygame, and modern frontend techniques. My goal is to create smooth, impactful user experiences.</p>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <h2 class="section-title">Contact Me</h2>
+    <div class="card">
+      <form class="contact-form" action="" method="POST">
+        {% csrf_token %}
+        <input type="text" name="name" id="name" placeholder="Your Name" required />
+        <input type="email" name="email" id="email" placeholder="Your Email" required />
+        <textarea name="message" id="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+</body>
+</html>
